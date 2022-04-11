@@ -1,5 +1,28 @@
 import 'package:get/get.dart';
 
+//upgrade
+
+// static double deviceScreenHeight = Get.context!.height;
+// static double targetHeight = 844;
+
+// static double getDimension(double dimension) {
+//   return (deviceScreenHeight / (targetHeight / dimension));
+// }
+
+// static double heightCalc (int pixels)
+//   {
+//     double x = screenHeight/pixels;
+//     return screenHeight/x;
+//   }
+
+// and call this function wherever I want to give  a height , then make  const variables to have all the heights needed in one place like at the top of the dart file :
+
+// //the height
+// const double pageViewContainer = 220;
+
+// //The calculate height for each device
+// _height = heightCalc (pageViewContainer);
+
 class Dimensions {
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
