@@ -23,7 +23,7 @@ class Product {
 
     if (json['products'] != null) {
       _products = <ProductModel>[];
-      json['products'].foreach((v) {
+      json['products'].forEach((v) {
         _products.add(ProductModel.fromJson(v));
       });
     }
@@ -63,8 +63,8 @@ class ProductModel {
     stars = json['stars'];
     img = json['img'];
     location = json['location'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    typdId = json['typdId'];
+    createdAt = json['created_At'];
+    updatedAt = json['updated_At'];
+    typdId = json['typd_Id'];
   }
 }
