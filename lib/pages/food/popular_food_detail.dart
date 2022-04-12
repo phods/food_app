@@ -11,15 +11,15 @@ import 'package:food_app/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  int pageId;
-  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final int pageId;
+  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    print("page id is $pageId");
-    print("product name is " + product.name.toString());
+    // print("page id is $pageId");
+    // print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
