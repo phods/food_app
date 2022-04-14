@@ -32,7 +32,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       Get.toNamed(RouteHelper.getInitial());
                     },
                     child: AppIcon(icon: Icons.clear)),
-                AppIcon(icon: Icons.shopping_cart_checkout_outlined),
+                AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
             bottom: PreferredSize(
