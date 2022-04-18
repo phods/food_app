@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/controllers/cart_controller.dart';
 import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_icon.dart';
@@ -34,7 +35,7 @@ class CartPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => MainFoodPage());
+                  Get.toNamed(RouteHelper.getInitial());
                 },
                 child: AppIcon(
                   icon: Icons.home_outlined,
