@@ -52,8 +52,7 @@ class CartController extends GetxController {
           );
         });
       } else {
-        Get.snackbar(
-            "Item count", "You should at least add an item to the cart!",
+        Get.snackbar("Item count", "You should at least add an item to the cart!",
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
@@ -94,5 +93,14 @@ class CartController extends GetxController {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
+  }
+
+  int get totalAmount {
+    var total = 0;
+
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return total;
   }
 }

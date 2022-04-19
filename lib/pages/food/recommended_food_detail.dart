@@ -13,15 +13,13 @@ import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
-  const RecommendedFoodDetail({Key? key, required this.pageId})
-      : super(key: key);
+  final String page;
+  const RecommendedFoodDetail({Key? key, required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var product =
-        Get.find<RecommendedProductController>().recommendedProductList[pageId];
-    Get.find<PopularProductController>()
-        .initProduct(product, Get.find<CartController>());
+    var product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -34,7 +32,11 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
+                      if (page == "cartpage") {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      } else {
+                        Get.toNamed(RouteHelper.getInitial());
+                      }
                     },
                     child: AppIcon(icon: Icons.clear)),
                 GetBuilder<PopularProductController>(builder: (controller) {
@@ -42,8 +44,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     children: [
                       GestureDetector(
                           onTap: () {
-                            if (controller.totalItems >= 1)
-                              Get.toNamed(RouteHelper.getCartPage());
+                            if (controller.totalItems >= 1) Get.toNamed(RouteHelper.getCartPage());
                           },
                           child: AppIcon(icon: Icons.shopping_cart_outlined)),
                       controller.totalItems >= 1
@@ -63,9 +64,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                               right: 3,
                               top: 3,
                               child: BigText(
-                                text: Get.find<PopularProductController>()
-                                    .totalItems
-                                    .toString(),
+                                text: Get.find<PopularProductController>().totalItems.toString(),
                                 size: 12,
                                 color: Colors.white,
                               ),
@@ -111,16 +110,14 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 Container(
                   child: ExpandableTextWidget(text: product.description!),
-                  margin: EdgeInsets.only(
-                      left: Dimensions.width20, right: Dimensions.width20),
+                  margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
                 ),
               ],
             ),
           )
         ],
       ),
-      bottomNavigationBar:
-          GetBuilder<PopularProductController>(builder: (controller) {
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder: (controller) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -204,8 +201,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                           left: Dimensions.width20,
                           right: Dimensions.width20),
                       decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius20),
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor,
                       ),
                       child: BigText(
