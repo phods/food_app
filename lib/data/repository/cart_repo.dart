@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:food_app/models/cart_model.dart';
 import 'package:food_app/utils/app_constants.dart';
-import 'package:get/get.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartRepo {
@@ -15,7 +15,8 @@ class CartRepo {
 
   void addToCartList(List<CartModel> cartList) {
     //sharedPreferences.remove(AppConstants.CART_LIST);
-    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    //sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    var time = DateTime.now().toString();
     cart = [];
     /*
     convert objects to string, because sharedpreferences only accepts string
@@ -23,18 +24,21 @@ class CartRepo {
     // cartList.forEach((element) {
     //   return cart.add(jsonEncode(element));
     // });
-    cartList.forEach((element) => cart.add(jsonEncode(element)));
+    cartList.forEach((element) {
+      element.time = time;
+      return cart.add(jsonEncode(element));
+    });
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
-    getCartList();
+    // getCartList();
   } //void addToCartList(List<CartModel> cartList) {
 
   List<CartModel> getCartList() {
     List<String> carts = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      // print("inside get cartlist" + carts.toString());
+      print("inside get cartlist" + carts.toString());
     }
     List<CartModel> cartList = [];
 
@@ -68,6 +72,10 @@ class CartRepo {
     removeCart();
     sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
     print("lenght of history list: " + getCartHistoryList().length.toString());
+
+    for (int i = 0; i < getCartHistoryList().length; i++) {
+      print("time for the order is ->" + getCartHistoryList()[i].time.toString());
+    }
   } //void addToCartHistoryList() {
 
   void removeCart() {
