@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:food_app/controllers/cart_controller.dart';
 import 'package:food_app/models/cart_model.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_icon.dart';
@@ -139,10 +142,16 @@ class CartHistory extends StatelessWidget {
                                           Map<int, CartModel> moreOrder = {};
                                           for (int j = 0; j < getCartHistoryList.length; j++) {
                                             if (getCartHistoryList[j].time == orderTime[i]) {
-                                              print("my" + getCartHistoryList[j].id.toString());
-                                              // moreOrder.putIfAbsent(key, () => null)
+                                              moreOrder.putIfAbsent(
+                                                  getCartHistoryList[j].id!,
+                                                  () => CartModel.fromJson(
+                                                      jsonDecode(jsonEncode(getCartHistoryList[j]))));
                                             }
                                           }
+
+                                          Get.find<CartController>().setItems = moreOrder;
+                                          Get.find<CartController>().addToCartList();
+                                          Get.toNamed(RouteHelper.getCartPage());
                                         },
                                         child: Container(
                                           padding: EdgeInsets.symmetric(
