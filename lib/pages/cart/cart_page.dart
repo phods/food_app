@@ -232,7 +232,7 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           //popularProduct.addItem(product);
-                          print("tappped");
+                          //print("tappped");
                           CartController.addToHistory();
                         },
                         child: Container(
