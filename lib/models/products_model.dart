@@ -59,9 +59,9 @@ class ProductModel {
     stars = json['stars'];
     img = json['img'];
     location = json['location'];
-    createdAt = json['created_At'];
-    updatedAt = json['updated_At'];
-    typeId = json['type_Id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    typeId = json['type_id'];
   }
 
   Map<String, dynamic> toJson() {

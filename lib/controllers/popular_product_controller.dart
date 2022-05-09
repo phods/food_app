@@ -31,7 +31,7 @@ class PopularProductController extends GetxController {
       _isLoaded = true;
       update();
     } else {
-      print("dont got product");
+      print("dont got popular product");
     }
   }
 
