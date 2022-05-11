@@ -37,7 +37,7 @@ class CartController extends GetxController {
       }
     } else {
       if (quantity > 0) {
-//  print("length of the item is " + _items.length.toString());
+        //  print("length of the item is " + _items.length.toString());
         _items.putIfAbsent(product.id!, () {
           // print("adding item to cart ${product.id} quantity $quantity");
           // _items.forEach(
